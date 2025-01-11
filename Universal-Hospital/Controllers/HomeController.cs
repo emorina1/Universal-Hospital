@@ -17,7 +17,27 @@ namespace Universal_Hospital.Controllers
         {
             return View();
         }
-
+        public IActionResult About()
+        {
+            ViewData["Message"]="Your application description page.";
+            return View();
+        }
+        public IActionResult MedicalService()
+        {
+            return View();
+        }
+        public IActionResult Doctor()
+        {
+            return View();
+        }
+        public IActionResult Timetable()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
