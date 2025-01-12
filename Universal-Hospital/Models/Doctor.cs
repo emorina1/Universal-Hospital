@@ -10,6 +10,7 @@
         public string Email { get; set; } // Email address for the doctor
         public int DepartamentId { get; set; } // Foreign key to the department the doctor belongs to
         public Departament Departament { get; set; } // Navigation property to the associated department
+        public ICollection<TimetableCategory> TimetableCategories { get; set; }
 
         // Constructor to initialize with a department
         public Doctor(string firstName, string lastName, string specialty, string phoneNumber, string email, Departament departament)
