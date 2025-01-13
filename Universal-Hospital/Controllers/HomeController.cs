@@ -1,9 +1,11 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Universal_Hospital.Models;
 
 namespace Universal_Hospital.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -22,6 +24,7 @@ namespace Universal_Hospital.Controllers
             ViewData["Message"]="Your application description page.";
             return View();
         }
+        [AllowAnonymous]
         public IActionResult MedicalService()
         {
             return View();

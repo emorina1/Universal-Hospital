@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Universal Hospital</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .about-header {
+            background-color: #1b6ec2;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .about-section {
+            padding: 50px 0;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer {
+            background-color: #1b6ec2;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            console .log("The screen width is 768px or smaller.");
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="about-header">
+        <div class="container">
+            <h1>Welcome to Universal Hospital</h1>
+            <p>Your health is our priority. Learn more about who we are and what we offer.</p>
+        </div>
+    </div>
+
+    <div class="container about-section">
+        <div class="row">
+            <!-- Foto e Spitalit në anën e majtë -->
+            <div class="col-md-6 about-image">
+         <img src="@Url.Content("~/spitali.png")" alt="Universal Hospital" />
+
+            </div>
+
+            <!-- Teksti në anën e djathtë -->
+            <div class="col-md-6 about-text">
+                <h2>Our Mission</h2>
+                <p>At Universal Hospital, we are committed to providing high-quality healthcare to all individuals. We prioritize patient care and aim to enhance the health and well-being of the communities we serve.</p>
+                <h2>Our Services</h2>
+                <ul>
+                    <li>General Medical Care</li>
+                    <li>Emergency Services</li>
+                    <li>Surgical Procedures</li>
+                    <li>Specialized Care (Cardiology, Neurology, etc.)</li>
+                    <li>Outpatient Services</li>
+                    <li>Rehabilitation & Therapy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Universal Hospital. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
