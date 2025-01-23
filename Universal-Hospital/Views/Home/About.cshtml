@@ -42,34 +42,31 @@
             color: white;
             text-align: center;
             padding: 15px 0;
-            position: fixed;
-            bottom: 0;
             width: 100%;
+            position: relative; /* Ndryshuar nga fixed në relative */
         }
 
-        
-
-        if (window.matchMedia("(max-width: 768px)").matches) {
-            console .log("The screen width is 768px or smaller.");
+        /* Shtoni stilizime për hapësirën midis seksioneve */
+        .section-spacing {
+            margin-top: 30px;
+            margin-bottom: 30px;
         }
-
     </style>
 </head>
 <body>
 
     <div class="about-header">
-        <div class="container">
+        <div class="container-fluid"> <!-- Përdorimi i container-fluid -->
             <h1>Welcome to Universal Hospital</h1>
             <p>Your health is our priority. Learn more about who we are and what we offer.</p>
         </div>
     </div>
 
-    <div class="container about-section">
+    <div class="container-fluid about-section section-spacing"> <!-- Përdorimi i container-fluid -->
         <div class="row">
             <!-- Foto e Spitalit në anën e majtë -->
             <div class="col-md-6 about-image">
-         <img src="@Url.Content("~/spitali.png")" alt="Universal Hospital" />
-
+                <img src="/spitali.png" alt="Universal Hospital" />
             </div>
 
             <!-- Teksti në anën e djathtë -->
@@ -89,12 +86,12 @@
         </div>
     </div>
 
-    <div class="footer">
-        <p>&copy; 2025 Universal Hospital. All rights reserved.</p>
+    <!-- Footer Section -->
+    <div class="container-fluid footer"> <!-- Përdorimi i container-fluid -->
+        <p class="mb-0">© 2025 Your Company. All rights reserved.</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

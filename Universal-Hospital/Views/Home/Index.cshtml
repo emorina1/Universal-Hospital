@@ -1,20 +1,50 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+
+@* @inject SignInManager<IdentityUser  > SignInManager *@
+@* @inject UserManager<IdentityUser  > UserManager *@
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container-fluid p-5 bg-light text-center">
-    <div class="container py-5">
-        <h1 class="display-4 text-primary fw-bold mb-4">Welcome to Universal Hospital</h1>
-        <p class="lead text-secondary">
+<style>
+    body {
+        background-image: url('/sp.png'); /* Sigurohuni që rruga është e saktë */
+        background-size: cover; /* Përshtat imazhin për të mbuluar të gjithë ekranin */
+        background-position: center; /* Qendron imazhi në qendër */
+        background-repeat: no-repeat; /* Mos e përsërit imazhin */
+        height: 100vh; /* Përcakton lartësinë e trupit */
+        margin: 0; /* Hiqni margjinat e trupit */
+    }
+
+    .content {
+        position: relative; /* Pozita relative për të mbajtur përmbajtjen mbi background */
+        z-index: 1; /* Siguron që përmbajtja të jetë mbi background */
+        color: white; /* Ngjyra e tekstit për të qenë e dukshme mbi background */
+    }
+
+     .container-fluid {
+        background-color: rgba(0, 0, 0, 0.3); /* Ngjyrë e errët me transparencë për të përmirësuar lexueshmërinë */
+    }
+</style>
+
+<div class="container-fluid p-5 text-center">
+    <div class="container py-5 content"> <!-- Shtova klasën content këtu -->
+        <h1 class="display-4 fw-bold mb-4">Welcome to Universal Hospital</h1>
+        <p class="lead">
             Explore the possibilities of <strong>ASP.NET Core</strong> for building high-performance and modern web applications.
         </p>
-        <a href="https://learn.microsoft.com/aspnet/core" class="btn btn-primary btn-lg mt-3">
+       <a href="/Home/About" class="btn btn-primary btn-lg mt-3"> <!-- Ndryshoni URL-në këtu -->
             Learn More
         </a>
     </div>
 </div>
 
-<!-- Sekcioni i veçorive -->
+@* @if (User  .IsInRole("Admin")) *@
+
+  
+
+<!-- Feature Section -->
 <div class="container my-5">
     <div class="row text-center">
         <!-- Feature 1 -->
@@ -55,7 +85,7 @@
     </div>
 </div>
 
-<!-- Sekcioni i Footer-it -->
-<div class="container-fluid bg-primary text-white py-4 text-center">
-    <p class="mb-0">© 2025 Your Company. All rights reserved.</p>
-</div>
+@* <!-- Footer Section --> *@
+@* <div class="container-fluid bg-primary text-white py-4 text-center"> *@
+@*     <p class="mb-0">© 2025 Your Company. All rights reserved.</p> *@
+@* </div> *@

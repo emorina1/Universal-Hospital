@@ -3,14 +3,14 @@
 }
 
 <div class="container mt-5">
-    <h1 class="text-center">Contact Us</h1>
-    <p class="text-muted text-center">We’re here to answer your questions and provide the help you need.</p>
+    <h1 class="text-center mb-4">Contact Us</h1>
+    <p class="text-muted text-center mb-4">We’re here to answer your questions and provide the help you need.</p>
     <hr />
 
     <div class="row">
         <!-- Contact Details -->
         <div class="col-md-6">
-            <h4>Contact Information</h4>
+            <h4 class="text-primary">Contact Information</h4>
             <p><strong>Phone:</strong> +1 (123) 456-7890</p>
             <p><strong>Email:</strong> contact@medicalservice.com</p>
             <p><strong>Address:</strong> 123 Medical Street, Health City</p>
@@ -18,7 +18,7 @@
 
         <!-- Contact Form -->
         <div class="col-md-6">
-            <h4>Send Us a Message</h4>
+            <h4 class="text-primary">Send Us a Message</h4>
             <form>
                 <div class="form-group">
                     <label for="name">Your Name</label>
@@ -37,3 +37,35 @@
         </div>
     </div>
 </div>
+
+<style>
+    /* Shtoni stilizime të personalizuara për faqen e kontaktit */
+    h1 {
+        font-size: 2.5rem; /* Rritni madhësinë e titullit */
+        color: #1b6ec2; /* Ngjyra e titullit */
+    }
+
+    h4 {
+        margin-top: 20px; /* Shtoni hapësirë mbi titujt e seksioneve */
+    }
+
+    .container {
+        background-color: #f8f9fa; /* Ngjyrë e lehtë për sfondin e kontejnerit */
+        border-radius: 8px; /* Rrumbullakosni skajet e kontejnerit */
+        padding: 20px; /* Shtoni hapësirë brenda kontejnerit */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shtoni hije për theksim */
+    }
+
+    .form-control {
+        border-radius: 5px; /* Rrumbullakosni skajet e inputeve */
+    }
+
+    .btn-primary {
+        background-color: #1b6ec2; /* Ngjyra e butonit */
+        border: none; /* Hiqni kufirin e butonit */
+    }
+
+    .btn-primary:hover {
+        background-color: #155a8a; /* Ngjyra e butonit kur kaloni me miun */
+    }
+</style>

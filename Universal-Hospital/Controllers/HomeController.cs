@@ -5,7 +5,7 @@ using Universal_Hospital.Models;
 
 namespace Universal_Hospital.Controllers
 {
-    [Authorize]
+    //[Authorize(Roles ="Admin")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -19,6 +19,7 @@ namespace Universal_Hospital.Controllers
         {
             return View();
         }
+   
         public IActionResult About()
         {
             ViewData["Message"]="Your application description page.";

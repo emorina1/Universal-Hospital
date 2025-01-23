@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Universal_Hospital.Data;
 using Universal_Hospital.Models;
+using System.Threading.Tasks;
 
 namespace Universal_Hospital.Controllers
 {
@@ -19,42 +16,33 @@ namespace Universal_Hospital.Controllers
             _context = context;
         }
 
-        // GET: Doctors
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Doctor.Include(d => d.Departament);
-            return View(await applicationDbContext.ToListAsync());
+            var doctors = _context.Doctor.Include(d => d.Departament);
+            return View(await doctors.ToListAsync());
         }
 
-        // GET: Doctors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var doctor = await _context.Doctor
                 .Include(d => d.Departament)
                 .FirstOrDefaultAsync(m => m.DoctorId == id);
+
             if (doctor == null)
-            {
                 return NotFound();
-            }
 
             return View(doctor);
         }
 
-        // GET: Doctors/Create
         public IActionResult Create()
         {
-            ViewData["DepartamentId"] = new SelectList(_context.Set<Departament>(), "DepartamentId", "DepartamentId");
+            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name");
             return View();
         }
 
-        // POST: Doctors/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DoctorId,FirstName,LastName,Specialty,PhoneNumber,Email,DepartamentId")] Doctor doctor)
@@ -65,38 +53,29 @@ namespace Universal_Hospital.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Set<Departament>(), "DepartamentId", "DepartamentId", doctor.DepartamentId);
+            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
             return View(doctor);
         }
 
-        // GET: Doctors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var doctor = await _context.Doctor.FindAsync(id);
             if (doctor == null)
-            {
                 return NotFound();
-            }
-            ViewData["DepartamentId"] = new SelectList(_context.Set<Departament>(), "DepartamentId", "DepartamentId", doctor.DepartamentId);
+
+            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
             return View(doctor);
         }
 
-        // POST: Doctors/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DoctorId,FirstName,LastName,Specialty,PhoneNumber,Email,DepartamentId")] Doctor doctor)
         {
             if (id != doctor.DoctorId)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
@@ -108,49 +87,38 @@ namespace Universal_Hospital.Controllers
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!DoctorExists(doctor.DoctorId))
-                    {
                         return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Set<Departament>(), "DepartamentId", "DepartamentId", doctor.DepartamentId);
+            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
             return View(doctor);
         }
 
-        // GET: Doctors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
-            {
                 return NotFound();
-            }
 
             var doctor = await _context.Doctor
                 .Include(d => d.Departament)
                 .FirstOrDefaultAsync(m => m.DoctorId == id);
+
             if (doctor == null)
-            {
                 return NotFound();
-            }
 
             return View(doctor);
         }
 
-        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var doctor = await _context.Doctor.FindAsync(id);
             if (doctor != null)
-            {
                 _context.Doctor.Remove(doctor);
-            }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

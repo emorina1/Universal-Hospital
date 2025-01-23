@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\spitali.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Remove="Views\Resource.resx" />
   </ItemGroup>
 
@@ -28,7 +32,10 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\spitali.png" />
   </ItemGroup>
 
 </Project>
