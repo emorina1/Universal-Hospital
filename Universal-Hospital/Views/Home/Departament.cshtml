@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Department</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .department-header {
+            background-color: #1b6ec2;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .department-section {
+            padding: 50px 0;
+        }
+
+        .department-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .department-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .footer {
+            background-color: #1b6ec2;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            width: 100%;
+            position: relative; /* Ndryshuar nga fixed në relative */
+        }
+
+        /* Shtoni stilizime për hapësirën midis seksioneve */
+        .section-spacing {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="department-header">
+        <div class="container-fluid">
+            <h1>Welcome to the Cardiology Department</h1>
+            <p>Your heart health is our priority. Learn more about our services and team.</p>
+        </div>
+    </div>
+
+    <div class="container-fluid department-section section-spacing">
+        <div class="row">
+            <!-- Foto e Departamentit në anën e majtë -->
+            <div class="col-md-6 department-image">
+                <img src="/images/cardiology.jpg" alt="Cardiology Department" />
+            </div>
+
+            <!-- Teksti në anën e djathtë -->
+            <div class="col-md-6 department-text">
+                <h2>Our Mission</h2>
+                <p>At the Cardiology Department, we are dedicated to providing comprehensive heart care. Our team of specialists is committed to diagnosing and treating heart conditions with the latest technology and techniques.</p>
+                <h2>Our Services</h2>
+                <ul>
+                    <li>Cardiac Consultations</li>
+                    <li>Diagnostic Testing (ECG, Echocardiogram)</li>
+                    <li>Interventional Cardiology</li>
+                    <li>Heart Failure Management</li>
+                    <li>Cardiac Rehabilitation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="container-fluid footer">
+        <p class="mb-0">© 2025 Universal Hospital. All rights reserved.</p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
