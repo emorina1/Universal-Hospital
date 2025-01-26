@@ -243,7 +243,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("DepartamentId");
 
-                    b.ToTable("Departament", (string)null);
+                    b.ToTable("Departament");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Doctor", b =>
@@ -280,7 +280,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("IdD");
 
-                    b.ToTable("Doctor", (string)null);
+                    b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Medical", b =>
@@ -320,47 +320,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MedicalStaff", (string)null);
-                });
-
-            modelBuilder.Entity("Universal_Hospital.Models.Nurse", b =>
-                {
-                    b.Property<int>("NurseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NurseId"));
-
-                    b.Property<int>("DepartamentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DepartamentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Shift")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("NurseId");
-
-                    b.ToTable("Nurse", (string)null);
+                    b.ToTable("MedicalStaff");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
