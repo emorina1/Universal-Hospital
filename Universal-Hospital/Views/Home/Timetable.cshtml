@@ -7,7 +7,10 @@
     <p class="text-muted text-center mb-4">Find the availability of our doctors and plan your visit accordingly.</p>
     <hr />
 
-    <div class="table-responsive mt-4">
+   
+    </div>
+
+    <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
             <thead class="thead-light">
                 <tr>
@@ -59,14 +62,26 @@
         background-color: #ffffff; /* Ngjyra e bardhë për tabelën */
         border-radius: 8px; /* Rrumbullakosni skajet e tabelës */
         overflow: hidden; /* Sigurohuni që skajet e rrumbullakosura të funksionojnë */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shtoni një hije për tabelën */
     }
 
     .thead-light th {
         background-color: #1b6ec2; /* Ngjyra e sfondit për header-in e tabelës */
         color: white; /* Ngjyra e tekstit për header-in e tabelës */
+        text-align: center; /* Qëndroni tekstin në qendër */
     }
 
     .table-hover tbody tr:hover {
         background-color: #f1f1f1; /* Ngjyra e sfondit kur kaloni me miun mbi rreshtin */
     }
+
+    .btn-primary {
+        background-color: #1b6ec2; /* Ngjyra kryesore për butonin */
+        border-color: #1b6ec2; /* Ngjyra e kufirit të butonit */
+    }
+
+        .btn-primary:hover {
+            background-color: #155a9c; /* Ngjyra kur butoni është në hover */
+            border-color: #155a9c; /* Ngjyra e kufirit në hover */
+        }
 </style>

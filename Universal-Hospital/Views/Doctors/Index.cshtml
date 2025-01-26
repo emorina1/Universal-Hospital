@@ -1,28 +1,18 @@
 ﻿@model IEnumerable<Universal_Hospital.Models.Doctor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Doctor Index";
 }
 
-<h1 class="text-center text-primary mb-4">Doctor Index</h1>
+<h1 class="mb-4">Doctor Index</h1>
 
-<p class="text-center">
-    <a class="btn btn-success" asp-action="Create"><i class="fas fa-plus"></i> Create New</a>
-</p>
+<div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-primary" asp-action="Create">➕ Create New</a>
+    <input type="text" id="searchInput" class="form-control w-25" placeholder="🔍 Search by name or specialization...">
+</div>
 
-<!-- Search Form with Bootstrap -->
-<form method="get" asp-action="Index" class="mb-4">
-    <div class="input-group">
-        <input type="text" name="searchString" class="form-control" placeholder="Search by Name or Specialization" value="@ViewData["SearchString"]" />
-        <div class="input-group-append">
-            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
-        </div>
-    </div>
-</form>
-
-<!-- Table with Bootstrap classes for styling -->
-<table class="table table-bordered table-striped table-hover">
-    <thead class="thead-dark">
+<table class="table table-hover table-bordered">
+    <thead class="table-dark">
         <tr>
             <th>@Html.DisplayNameFor(model => model.FirstName)</th>
             <th>@Html.DisplayNameFor(model => model.LastName)</th>
@@ -30,10 +20,10 @@
             <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
             <th>@Html.DisplayNameFor(model => model.Position)</th>
             <th>@Html.DisplayNameFor(model => model.Specialization)</th>
-            <th class="text-center">Actions</th>
+            <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tableBody">
         @foreach (var item in Model)
         {
             <tr>
@@ -43,12 +33,31 @@
                 <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
                 <td>@Html.DisplayFor(modelItem => item.Position)</td>
                 <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
-                <td class="text-center">
-                    <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.IdD"><i class="fas fa-edit"></i> Edit</a> |
-                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.IdD"><i class="fas fa-info-circle"></i> Details</a> |
-                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.IdD"><i class="fas fa-trash"></i> Delete</a>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.IdD">✏️ Edit</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.IdD">ℹ️ Details</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.IdD">🗑️ Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<script>
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll("#tableBody tr");
+
+        rows.forEach(row => {
+            let firstName = row.cells[0].textContent.toLowerCase();
+            let lastName = row.cells[1].textContent.toLowerCase();
+            let specialization = row.cells[5].textContent.toLowerCase();
+
+            if (firstName.includes(filter) || lastName.includes(filter) || specialization.includes(filter)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+</script>
