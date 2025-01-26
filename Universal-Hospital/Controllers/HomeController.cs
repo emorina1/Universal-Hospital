@@ -34,6 +34,11 @@ namespace Universal_Hospital.Controllers
         {
             return View();
         }
+
+        public IActionResult Nurse()
+        {
+            return View();
+        }
         public IActionResult Timetable()
         {
             return View();

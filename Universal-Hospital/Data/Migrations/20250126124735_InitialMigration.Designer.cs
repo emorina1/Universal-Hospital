@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Universal_Hospital.Data;
 
@@ -11,9 +12,11 @@ using Universal_Hospital.Data;
 namespace Universal_Hospital.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126124735_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,7 +246,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("DepartamentId");
 
-                    b.ToTable("Departament", (string)null);
+                    b.ToTable("Departament");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Doctor", b =>
@@ -280,7 +283,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("IdD");
 
-                    b.ToTable("Doctor", (string)null);
+                    b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Medical", b =>
@@ -320,7 +323,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MedicalStaff", (string)null);
+                    b.ToTable("MedicalStaff");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Nurse", b =>
@@ -333,10 +336,6 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.Property<int>("DepartamentId")
                         .HasColumnType("int");
-
-                    b.Property<string>("DepartamentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -360,7 +359,9 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("NurseId");
 
-                    b.ToTable("Nurse", (string)null);
+                    b.HasIndex("DepartamentId");
+
+                    b.ToTable("Nurse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -412,6 +413,17 @@ namespace Universal_Hospital.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Universal_Hospital.Models.Nurse", b =>
+                {
+                    b.HasOne("Universal_Hospital.Models.Departament", "Departament")
+                        .WithMany()
+                        .HasForeignKey("DepartamentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Departament");
                 });
 #pragma warning restore 612, 618
         }
