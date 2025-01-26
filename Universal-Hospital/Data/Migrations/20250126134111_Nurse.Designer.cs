@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Universal_Hospital.Data;
 
@@ -11,9 +12,11 @@ using Universal_Hospital.Data;
 namespace Universal_Hospital.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250126134111_Nurse")]
+    partial class Nurse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -243,7 +246,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("DepartamentId");
 
-                    b.ToTable("Departament", (string)null);
+                    b.ToTable("Departament");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Doctor", b =>
@@ -280,7 +283,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("IdD");
 
-                    b.ToTable("Doctor", (string)null);
+                    b.ToTable("Doctor");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Medical", b =>
@@ -320,7 +323,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MedicalStaff", (string)null);
+                    b.ToTable("MedicalStaff");
                 });
 
             modelBuilder.Entity("Universal_Hospital.Models.Nurse", b =>
@@ -360,46 +363,7 @@ namespace Universal_Hospital.Data.Migrations
 
                     b.HasKey("NurseId");
 
-                    b.ToTable("Nurse", (string)null);
-                });
-
-            modelBuilder.Entity("Universal_Hospital.Models.Time", b =>
-                {
-                    b.Property<int>("TimeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimeId"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DepartamentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DoctorIdD")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("EndTime")
-                        .HasColumnType("time");
-
-                    b.Property<int>("IdD")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ShiftType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
-
-                    b.HasKey("TimeId");
-
-                    b.HasIndex("DepartamentId");
-
-                    b.HasIndex("DoctorIdD");
-
-                    b.ToTable("Time");
+                    b.ToTable("Nurse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -451,25 +415,6 @@ namespace Universal_Hospital.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Universal_Hospital.Models.Time", b =>
-                {
-                    b.HasOne("Universal_Hospital.Models.Departament", "Departaments")
-                        .WithMany()
-                        .HasForeignKey("DepartamentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Universal_Hospital.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorIdD")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Departaments");
-
-                    b.Navigation("Doctor");
                 });
 #pragma warning restore 612, 618
         }

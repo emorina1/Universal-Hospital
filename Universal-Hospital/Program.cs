@@ -10,7 +10,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+
 
 // Configure Identity with roles
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
@@ -70,28 +71,28 @@ using (var scope = app.Services.CreateScope())
 
     }
 }
-using (var scope = app.Services.CreateScope())
-{
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+//using (var scope = app.Services.CreateScope())
+//{
+//    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-    string email = "admin@admin.com";
-    string password = "Test123";
+//    string email = "admin@admin.com";
+//    string password = "Test123";
 
-    if (await userManager.FindByEmailAsync(email) == null)
-    {
-        var user = new IdentityUser();
-        user.UserName = email;
-        user.Email = email;
-
-
-        await userManager.CreateAsync(user, password);
+//    if (await userManager.FindByEmailAsync(email) == null)
+//    {
+//        var user = new IdentityUser();
+//        user.UserName = email;
+//        user.Email = email;
 
 
+//        await userManager.CreateAsync(user, password);
 
-        await userManager.AddToRoleAsync(user, "Admin");
 
-    }
-}
+
+//        await userManager.AddToRoleAsync(user, "Admin");
+
+//    }
+//}
 
 
 
