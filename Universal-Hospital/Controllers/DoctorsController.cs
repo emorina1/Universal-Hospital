@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Universal_Hospital.Data;
 using Universal_Hospital.Models;
-using System.Threading.Tasks;
 
 namespace Universal_Hospital.Controllers
 {
@@ -16,36 +19,42 @@ namespace Universal_Hospital.Controllers
             _context = context;
         }
 
+        // GET: Doctors
         public async Task<IActionResult> Index()
         {
-            var doctors = _context.Doctor.Include(d => d.Departament);
-            return View(await doctors.ToListAsync());
+            return View(await _context.Doctor.ToListAsync());
         }
 
+        // GET: Doctors/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
+            {
                 return NotFound();
+            }
 
             var doctor = await _context.Doctor
-                .Include(d => d.Departament)
-                .FirstOrDefaultAsync(m => m.DoctorId == id);
-
+                .FirstOrDefaultAsync(m => m.IdD == id);
             if (doctor == null)
+            {
                 return NotFound();
+            }
 
             return View(doctor);
         }
 
+        // GET: Doctors/Create
         public IActionResult Create()
         {
-            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name");
             return View();
         }
 
+        // POST: Doctors/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DoctorId,FirstName,LastName,Specialty,PhoneNumber,Email,DepartamentId")] Doctor doctor)
+        public async Task<IActionResult> Create([Bind("IdD,FirstName,LastName,Email,PhoneNumber,Position,Specialization")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
@@ -53,29 +62,36 @@ namespace Universal_Hospital.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
             return View(doctor);
         }
 
+        // GET: Doctors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
+            {
                 return NotFound();
+            }
 
             var doctor = await _context.Doctor.FindAsync(id);
             if (doctor == null)
+            {
                 return NotFound();
-
-            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
+            }
             return View(doctor);
         }
 
+        // POST: Doctors/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DoctorId,FirstName,LastName,Specialty,PhoneNumber,Email,DepartamentId")] Doctor doctor)
+        public async Task<IActionResult> Edit(int id, [Bind("IdD,FirstName,LastName,Email,PhoneNumber,Position,Specialization")] Doctor doctor)
         {
-            if (id != doctor.DoctorId)
+            if (id != doctor.IdD)
+            {
                 return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
@@ -86,39 +102,48 @@ namespace Universal_Hospital.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DoctorExists(doctor.DoctorId))
+                    if (!DoctorExists(doctor.IdD))
+                    {
                         return NotFound();
-
-                    throw;
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartamentId"] = new SelectList(_context.Departament, "DepartamentId", "Name", doctor.DepartamentId);
             return View(doctor);
         }
 
+        // GET: Doctors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
+            {
                 return NotFound();
+            }
 
             var doctor = await _context.Doctor
-                .Include(d => d.Departament)
-                .FirstOrDefaultAsync(m => m.DoctorId == id);
-
+                .FirstOrDefaultAsync(m => m.IdD == id);
             if (doctor == null)
+            {
                 return NotFound();
+            }
 
             return View(doctor);
         }
 
+        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var doctor = await _context.Doctor.FindAsync(id);
             if (doctor != null)
+            {
                 _context.Doctor.Remove(doctor);
+            }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -126,7 +151,7 @@ namespace Universal_Hospital.Controllers
 
         private bool DoctorExists(int id)
         {
-            return _context.Doctor.Any(e => e.DoctorId == id);
+            return _context.Doctor.Any(e => e.IdD == id);
         }
     }
 }

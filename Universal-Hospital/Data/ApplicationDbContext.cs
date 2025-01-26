@@ -14,6 +14,7 @@ namespace Universal_Hospital.Data
         }
         public DbSet<Universal_Hospital.Models.Doctor> Doctor { get; set; } = default!;
         public DbSet<Universal_Hospital.Models.Departament> Departament { get; set; } = default!;
-        public DbSet<Universal_Hospital.Models.MedicalStaff> MedicalStaff { get; set; } = default!;
+        public DbSet<Universal_Hospital.Models.Medical> MedicalStaff { get; set; } = default!;
+       
     }
 }

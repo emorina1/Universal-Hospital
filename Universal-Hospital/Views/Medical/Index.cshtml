@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Universal_Hospital.Models.Medical>
+
+@{
+    ViewData["Title"] = "Medical Staff";
+}
+
+<h1 class="mb-4">Medical Staff</h1>
+
+<div class="d-flex justify-content-between mb-3">
+    <a class="btn btn-primary" asp-action="Create">➕ Create New</a>
+    <input type="text" id="searchInput" class="form-control w-25" placeholder="🔍 Search by name...">
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.Position)</th>
+            <th>@Html.DisplayNameFor(model => model.Specialization)</th>
+            <th>@Html.DisplayNameFor(model => model.EmploymentDate)</th>
+            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Comments)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmploymentDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Comments)</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@item.Id">✏️ Edit</a>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id">ℹ️ Details</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">🗑️ Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    document.getElementById("searchInput").addEventListener("keyup", function () {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll("#tableBody tr");
+
+        rows.forEach(row => {
+            let firstName = row.cells[0].textContent.toLowerCase();
+            let lastName = row.cells[1].textContent.toLowerCase();
+
+            if (firstName.includes(filter) || lastName.includes(filter)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    });
+</script>

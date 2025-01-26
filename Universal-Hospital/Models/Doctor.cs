@@ -1,36 +1,23 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Universal_Hospital.Models
 {
     public class Doctor
     {
         [Key]
-        public int DoctorId { get; set; }
+        public int IdD { get; set; } // Identifikues unikal
 
-        [Required]
-        [StringLength(50)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
+        public string LastName { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(50)]
-        public string LastName { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string PhoneNumber { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(100)]
-        public string Specialty { get; set; }
+        public string Position { get; set; } = string.Empty; // P.sh. Kirurg, Pediatër, etj.
+        public string Specialization { get; set; } = string.Empty;
 
-        [Required]
-        [Phone]
-        public string PhoneNumber { get; set; }
+       
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [ForeignKey("Departament")]
-        public int DepartamentId { get; set; }
-
-        public virtual Departament Departament { get; set; }
+       
     }
 }
